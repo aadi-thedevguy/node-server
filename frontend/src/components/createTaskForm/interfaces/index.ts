@@ -32,3 +32,7 @@ export interface ITextField extends IDisabled {
   ) => void;
   value : string
 }
+
+export interface ITaskForm {
+  setOpen? : React.Dispatch<React.SetStateAction<boolean>>
+}

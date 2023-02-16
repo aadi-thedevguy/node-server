@@ -19,8 +19,9 @@ import { Priority } from "./enums/priority";
 import { ICreateTask } from "../taskArea/interfaces";
 import { sendApiRequest } from "../../helpers/sendApiRequest";
 import { AppContext } from "../../context/AppContext";
+import { ITaskForm } from "./interfaces";
 
-export const CreateTaskForm: FC = (): ReactElement => {
+export const CreateTaskForm: FC<ITaskForm> = (props): ReactElement => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [date, setDate] = useState<Date | null>(new Date());
@@ -28,6 +29,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
   const [priority, setPriority] = useState<string>(Priority.normal);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
+  const {setOpen} = props
   const ctx = useContext(AppContext)
 
   const { isLoading, mutate, isSuccess } = useMutation((data: ICreateTask) =>
@@ -66,6 +68,9 @@ export const CreateTaskForm: FC = (): ReactElement => {
 
     setTitle('')
     setDescription('')
+    if (setOpen) {
+      setOpen(false)
+    }
   }
 
   return (

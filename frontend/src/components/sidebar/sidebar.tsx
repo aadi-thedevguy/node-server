@@ -13,7 +13,7 @@ export const Sidebar: FC = (): ReactElement => {
         sm : 'none',
         md : 'block'
       },
-      minHeight:'100vh'
+      height:'100vh'
     }}
     >
       <Profile/>

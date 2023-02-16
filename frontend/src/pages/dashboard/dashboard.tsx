@@ -22,7 +22,6 @@ export const Dashboard: FC = (): ReactElement => {
   const ctx = useContext(AppContext);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [width, setWidth] = useState(false);
 
   useEffect(() => {
     if (!ctx.user) navigate("/login");
@@ -70,7 +69,7 @@ export const Dashboard: FC = (): ReactElement => {
             <ChevronRightIcon />
           </IconButton>
         <Profile />
-        <CreateTaskForm />
+        <CreateTaskForm setOpen={setOpen} />
       </Drawer>
     </Grid>
   );
