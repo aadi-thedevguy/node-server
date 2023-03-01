@@ -30,7 +30,7 @@ export const Login: FC = (): ReactElement => {
 
   const { isLoading, mutate, isSuccess, data } = useMutation(
     async (data: IUserDetails) => {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch('https://fullstack-typescript.onrender.com/api/auth/login', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

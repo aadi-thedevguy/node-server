@@ -14,7 +14,7 @@ export const Sidebar: FC = (): ReactElement => {
         sm : 'none',
         md : 'block'
       },
-      height:'100vh'
+      minHeight:'80vh'
     }}
     >
     <Suspense fallback={<CircularProgress />}>

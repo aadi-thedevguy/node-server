@@ -33,7 +33,7 @@ export const Signup: FC = (): ReactElement => {
 
   const { isLoading, mutate, isSuccess,data } = useMutation(
     async (data: SignupDetails) => {
-      const response = await fetch('api/auth/signup', {
+      const response = await fetch('https://fullstack-typescript.onrender.com/api/auth/signup', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

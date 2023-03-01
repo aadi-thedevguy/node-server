@@ -14,7 +14,7 @@ const TaskArea: FC = (): ReactElement => {
 
   const ctx = useContext(AppContext)
 
-  const url = '/api/tasks'
+  const url = 'https://fullstack-typescript.onrender.com/api/tasks'
   const { error, isLoading, data,isRefetching, refetch } = useQuery(
     ["tasks"],
     async () => {
