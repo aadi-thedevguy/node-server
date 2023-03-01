@@ -9,7 +9,7 @@ import { TaskFooter } from './_taskFooter';
 import { TaskHeader } from './_taskHeader';
 import { renderPriorityBorderColor } from './helpers/renderPriorityBorderColor';
 
-export const Task: FC<ITask> = (props): ReactElement => {
+const Task: FC<ITask> = (props): ReactElement => {
   //  Destructure props
   const {
     id,
@@ -51,3 +51,4 @@ export const Task: FC<ITask> = (props): ReactElement => {
   );
 };
 
+export default Task

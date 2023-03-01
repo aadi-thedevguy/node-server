@@ -1,11 +1,9 @@
 import { Avatar, Box, Button, Typography } from "@mui/material";
-import React, { FC, ReactElement, useContext } from "react";
+import { FC, ReactElement, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 
-const urls = ["Loki", "Felix","Pumpkin","Tigger","Boots","Muffin","Coco","Sassy","Shadow"]
-const seed = urls[Math.floor(Math.random() * urls.length )]
 
-export const Profile: FC = (): ReactElement => {
+const Profile: FC = (): ReactElement => {
   const { user, logout } = useContext(AppContext);
 
   const handleClick = () => logout();
@@ -24,7 +22,7 @@ export const Profile: FC = (): ReactElement => {
           backgroundColor: "primary.main",
           marginBottom: "16px",
         }}
-        src={`https://api.dicebear.com/5.x/fun-emoji/svg?seed=${seed}&backgroundColor=059ff2`}
+        src={`https://api.dicebear.com/5.x/fun-emoji/svg?seed=${user?.name?.split(" ")[0]}&backgroundColor=059ff2`}
         alt="avatar"
       />
       <Typography variant="h6" color="text.primary">
@@ -44,3 +42,5 @@ export const Profile: FC = (): ReactElement => {
     </Box>
   );
 };
+
+export default Profile

@@ -6,8 +6,7 @@ import {
   Button,
   Alert,
   AlertTitle,
-  TextField,
-} from "@mui/material";
+  TextField} from "@mui/material";
 import React, {
   FC,
   ReactElement,
@@ -31,7 +30,7 @@ export const Login: FC = (): ReactElement => {
 
   const { isLoading, mutate, isSuccess, data } = useMutation(
     async (data: IUserDetails) => {
-      const response = await fetch(`${window.location.origin}/auth/login`, {
+      const response = await fetch('/api/auth/login', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

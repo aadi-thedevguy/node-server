@@ -1,8 +1,9 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement,Suspense } from 'react';
 
-import { CreateTaskForm } from '../createTaskForm/createTaskForm';
+const CreateTaskForm = React.lazy(() => import('../createTaskForm/createTaskForm'))
+const Profile = React.lazy(() => import('../profile/profile'))
 import { Grid } from '@mui/material';
-import { Profile } from '../profile/profile';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const Sidebar: FC = (): ReactElement => {
   return (
@@ -16,8 +17,10 @@ export const Sidebar: FC = (): ReactElement => {
       height:'100vh'
     }}
     >
+    <Suspense fallback={<CircularProgress />}>
       <Profile/>
       <CreateTaskForm />
+    </Suspense>
     </Grid>
   );
 };

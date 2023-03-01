@@ -2,19 +2,19 @@ import { Box, Grid, Alert, LinearProgress } from "@mui/material";
 import React, { FC, ReactElement,useContext,useEffect } from "react";
 import { useQuery,useMutation } from "@tanstack/react-query";
 
-import { Task } from "../task/task";
-import { TaskCounter } from "../taskCounter/taskCounter";
 import { sendApiRequest } from "../../helpers/sendApiRequest";
 import { countTasks } from "./helpers/countTasks";
 import { ITaskApi,IUpdateTask } from "./interfaces";
 import { Status } from "../createTaskForm/enums/status";
 import { AppContext } from "../../context/AppContext";
+import TaskCounter from "../taskCounter/taskCounter"
+import Task from "../task/task";
 
-export const TaskArea: FC = (): ReactElement => {
+const TaskArea: FC = (): ReactElement => {
 
   const ctx = useContext(AppContext)
 
-  const url = `${window.location.origin}/api/tasks`
+  const url = '/api/tasks'
   const { error, isLoading, data,isRefetching, refetch } = useQuery(
     ["tasks"],
     async () => {
@@ -112,3 +112,5 @@ export const TaskArea: FC = (): ReactElement => {
     </Grid>
   );
 };
+
+export default TaskArea

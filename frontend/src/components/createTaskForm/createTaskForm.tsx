@@ -21,7 +21,7 @@ import { sendApiRequest } from "../../helpers/sendApiRequest";
 import { AppContext } from "../../context/AppContext";
 import { ITaskForm } from "./interfaces";
 
-export const CreateTaskForm: FC<ITaskForm> = (props): ReactElement => {
+const CreateTaskForm: FC<ITaskForm> = (props): ReactElement => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [date, setDate] = useState<Date | null>(new Date());
@@ -33,7 +33,7 @@ export const CreateTaskForm: FC<ITaskForm> = (props): ReactElement => {
   const ctx = useContext(AppContext)
 
   const { isLoading, mutate, isSuccess } = useMutation((data: ICreateTask) =>
-    sendApiRequest(`${window.location.origin}/api/tasks`, "POST",ctx.user,data)
+    sendApiRequest('/api/tasks', "POST",ctx.user,data)
   );
 
   useEffect(() => {
@@ -168,3 +168,5 @@ export const CreateTaskForm: FC<ITaskForm> = (props): ReactElement => {
     </Box>
   );
 };
+
+export default CreateTaskForm

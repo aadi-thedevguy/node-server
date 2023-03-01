@@ -1,8 +1,7 @@
-import express, { Express,Request,Response } from 'express';
+import express, { Express} from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import path from 'path';
 
 import { tasksRouter } from './tasks/tasks.router';
 import { userRouter } from './users/users.router';
@@ -32,16 +31,16 @@ app.listen(port, async () => {
     }
 })
 
-app.use('/auth', userRouter);
+app.use('/api/auth', userRouter);
 app.use('/api', tasksRouter);
 
 // serve frontend
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../frontend/dist')));
-    app.get('*', (req : Request, res : Response) => res.sendFile(path.resolve(__dirname, '../', 'frontend', 'dist', 'index.html')));
-}
-else {
-    app.get('/', (req : Request, res : Response) => {
-        res.send('Please Set To Production');
-    });
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname, '../frontend/dist')));
+//     app.get('*', (req : Request, res : Response) => res.sendFile(path.resolve(__dirname, '../', 'frontend', 'dist', 'index.html')));
+// }
+// else {
+//     app.get('/', (req : Request, res : Response) => {
+//         res.send('Please Set To Production');
+//     });
+// }

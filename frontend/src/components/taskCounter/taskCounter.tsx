@@ -6,7 +6,7 @@ import { Status } from '../createTaskForm/enums/status';
 import { emitCorrectBorderColor } from './helpers/emitCorrectBorderColor';
 import { emitCorrectLabel } from './helpers/emitCorrectLabel';
 
-export const TaskCounter: FC<ITaskCounter> = (
+const TaskCounter: FC<ITaskCounter> = (
   props,
 ): ReactElement => {
   //  Destructure props
@@ -47,4 +47,5 @@ export const TaskCounter: FC<ITaskCounter> = (
   );
 };
 
+export default TaskCounter
 

@@ -4,19 +4,21 @@ import React, {
   useContext,
   useEffect,
   useState,
+  Suspense
 } from "react";
+
 import { format } from "date-fns";
-import { Grid, Box, Drawer } from "@mui/material";
+import { Grid, Box, Drawer, CircularProgress } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useNavigate } from "react-router-dom";
 
 import { AppContext } from "../../context/AppContext";
-import { CreateTaskForm } from "../../components/createTaskForm/createTaskForm";
-import { Profile } from "../../components/profile/profile";
 import { Sidebar } from "../../components/sidebar/sidebar";
-import { TaskArea } from "../../components/taskArea/taskArea";
+import TaskArea from "../../components/taskArea/taskArea";
+const CreateTaskForm = React.lazy(() => import("../../components/createTaskForm/createTaskForm"))
+const Profile = React.lazy(() => import("../../components/profile/profile"))
 
 export const Dashboard: FC = (): ReactElement => {
   const ctx = useContext(AppContext);
@@ -68,8 +70,10 @@ export const Dashboard: FC = (): ReactElement => {
         >
             <ChevronRightIcon />
           </IconButton>
-        <Profile />
-        <CreateTaskForm setOpen={setOpen} />
+          <Suspense fallback={<CircularProgress />}>
+      <Profile/>
+      <CreateTaskForm setOpen={setOpen} />
+    </Suspense>
       </Drawer>
     </Grid>
   );

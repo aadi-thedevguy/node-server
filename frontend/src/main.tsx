@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             <CssBaseline />
             <App />
 
-            <ReactQueryDevtools initialIsOpen={false} />
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           </ThemeProvider>
         </AppContextProvider>
       </QueryClientProvider>
