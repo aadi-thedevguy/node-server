@@ -19,9 +19,9 @@ import { Priority } from "./enums/priority";
 import { ICreateTask } from "../taskArea/interfaces";
 import { sendApiRequest } from "../../helpers/sendApiRequest";
 import { AppContext } from "../../context/AppContext";
-import { ITaskForm } from "./interfaces";
+import { ISideBar } from "../sidebar/interfaces";
 
-const CreateTaskForm: FC<ITaskForm> = (props): ReactElement => {
+const CreateTaskForm: FC<ISideBar> = (props): ReactElement => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [date, setDate] = useState<Date | null>(new Date());
@@ -40,6 +40,9 @@ const CreateTaskForm: FC<ITaskForm> = (props): ReactElement => {
     if (isSuccess) {
       setShowSuccess(true);
       ctx.toggle()
+      if (setOpen) {
+        setOpen(false)
+      }
     }
 
     const successTimeout = setTimeout(() => {
@@ -68,9 +71,6 @@ const CreateTaskForm: FC<ITaskForm> = (props): ReactElement => {
 
     setTitle('')
     setDescription('')
-    if (setOpen) {
-      setOpen(false)
-    }
   }
 
   return (

@@ -60,7 +60,7 @@ const TaskArea: FC = (): ReactElement => {
     } 
 
   return (
-    <Grid item md={8} sm={12} px={4}>
+    <Grid minWidth={'90%'} px={4}>
       
         {(updateTask.isLoading || isRefetching) && <LinearProgress sx={{my : 4}} />} 
       <Grid container display="flex" justifyContent="center">
@@ -92,7 +92,7 @@ const TaskArea: FC = (): ReactElement => {
             )}
             {!error && Array.isArray(data) && data.length === 0 && (
               <Alert severity="warning">
-                You do not have any Tasks, Start by creating some tasks
+                You do not have any Tasks, Create a Task by Clicking on the Profile Icon
               </Alert>
             )}
             {

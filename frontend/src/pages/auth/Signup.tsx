@@ -173,9 +173,10 @@ export const Signup: FC = (): ReactElement => {
         >
           Signup
         </Button>
-        <p>
+        <Typography variant="button">
+        
           <Link to="/login"> Or Login</Link>
-        </p>
+        </Typography>
       </Stack>
     </Box>
   );

@@ -142,9 +142,9 @@ export const Login: FC = (): ReactElement => {
         >
           Login
         </Button>
-        <p>
+        <Typography variant="button">
           <Link to="/signup"> Or Signup</Link>
-        </p>
+        </Typography>
       </Stack>
     </Box>
   );
