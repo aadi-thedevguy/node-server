@@ -31,16 +31,14 @@ export async function sendApiRequest<T>(
   url: string,
   method: Method,
   user: ResponseUser,
-  data? : any
+  data?: any
 ): Promise<T> {
-  
   const response = await fetch(url, returnCorrectRequest(method, user, data));
 
   if (!response.ok) {
-    const message = `An Error Occured : ${response.status}`
-    throw new Error(message)
-    
+    const message = `An Error Occured : ${response.status}`;
+    throw new Error(message);
   }
 
-  return await response.json() as Promise<T>;
+  return (await response.json()) as Promise<T>;
 }

@@ -3,7 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "bun backend/index.ts",
+    "build:client": "cd ./frontend && bun run build",
+    "start": "bun run build:client && bun backend/index.ts",
     "dev": "bun --watch backend/index.ts"
   },
   "devDependencies": {

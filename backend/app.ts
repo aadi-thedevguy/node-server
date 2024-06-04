@@ -17,7 +17,7 @@ app.use(secureHeaders());
 
 const apiRoutes = app
   .basePath("/api")
-  .route("/users", users)
+  .route("/auth", users)
   .route("/tasks", tasks);
 
 app.get("*", serveStatic({ root: "./frontend/dist" }));

@@ -7,7 +7,13 @@ import {
   Alert,
   AlertTitle,
 } from "@mui/material";
-import React, { FC, ReactElement, useEffect, useState,useContext } from "react";
+import React, {
+  FC,
+  ReactElement,
+  useEffect,
+  useState,
+  useContext,
+} from "react";
 import { useMutation } from "@tanstack/react-query";
 
 import { TaskDateField } from "./_taskDateField";
@@ -22,26 +28,26 @@ import { AppContext } from "../../context/AppContext";
 import { ISideBar } from "../sidebar/interfaces";
 
 const CreateTaskForm: FC<ISideBar> = (props): ReactElement => {
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [date, setDate] = useState<Date | null>(new Date());
   const [status, setStatus] = useState<string>(Status.todo);
   const [priority, setPriority] = useState<string>(Priority.normal);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
-  const {setOpen} = props
-  const ctx = useContext(AppContext)
+  const { setOpen } = props;
+  const ctx = useContext(AppContext);
 
   const { isLoading, mutate, isSuccess } = useMutation((data: ICreateTask) =>
-    sendApiRequest('https://fullstack-typescript.onrender.com/api/tasks', "POST",ctx.user,data)
+    sendApiRequest("/api/tasks", "POST", ctx.user, data)
   );
 
   useEffect(() => {
     if (isSuccess) {
       setShowSuccess(true);
-      ctx.toggle()
+      ctx.toggle();
       if (setOpen) {
-        setOpen(false)
+        setOpen(false);
       }
     }
 
@@ -50,11 +56,9 @@ const CreateTaskForm: FC<ISideBar> = (props): ReactElement => {
     }, 5000);
 
     return () => {
-      clearTimeout(successTimeout)
-    }
+      clearTimeout(successTimeout);
+    };
   }, [isSuccess]);
-
-
 
   function createTaskHandler() {
     if (!title || !date || !description) return;
@@ -69,8 +73,8 @@ const CreateTaskForm: FC<ISideBar> = (props): ReactElement => {
 
     mutate(task);
 
-    setTitle('')
-    setDescription('')
+    setTitle("");
+    setDescription("");
   }
 
   return (
@@ -82,13 +86,12 @@ const CreateTaskForm: FC<ISideBar> = (props): ReactElement => {
       px={4}
       my={6}
     >
-      {showSuccess &&
-      
-      <Alert severity="success" sx={{ width: "100%", marginBottom: "1rem" }}>
-        <AlertTitle>Success</AlertTitle>
-        The Task has been created successfully
-      </Alert>
-      }
+      {showSuccess && (
+        <Alert severity="success" sx={{ width: "100%", marginBottom: "1rem" }}>
+          <AlertTitle>Success</AlertTitle>
+          The Task has been created successfully
+        </Alert>
+      )}
       <Typography mb={2} component="h2" variant="h6">
         Create A Task
       </Typography>
@@ -169,4 +172,4 @@ const CreateTaskForm: FC<ISideBar> = (props): ReactElement => {
   );
 };
 
-export default CreateTaskForm
+export default CreateTaskForm;

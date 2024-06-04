@@ -55,8 +55,8 @@ router.post(
   }
 );
 
-router.put("/", protect, zValidator("form", updateTaskValidator), async (c) => {
-  const body = c.req.valid("form");
+router.put("/", protect, zValidator("json", updateTaskValidator), async (c) => {
+  const body = c.req.valid("json");
   const user = c.get("user");
   if (!user) {
     return c.json({ error: "Not Authorized" }, 401);

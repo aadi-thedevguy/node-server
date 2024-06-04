@@ -27,13 +27,13 @@ export const Signup: FC = (): ReactElement => {
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
-  const [errMsg, setErrMsg] = useState('');
+  const [errMsg, setErrMsg] = useState("");
 
   const { login } = useContext(AppContext);
 
-  const { isLoading, mutate, isSuccess,data } = useMutation(
+  const { isLoading, mutate, isSuccess, data } = useMutation(
     async (data: SignupDetails) => {
-      const response = await fetch('https://fullstack-typescript.onrender.com/api/auth/signup', {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -48,31 +48,30 @@ export const Signup: FC = (): ReactElement => {
     if (isSuccess) {
       if (!data.errors) {
         setShowSuccess(true);
-        login(data)
-      }
-      else {
+        login(data);
+      } else {
         setErrMsg(
-          (data.errors && Array.isArray(data.errors) && data.errors[0].msg) || data.errors
-        )
+          (data.errors && Array.isArray(data.errors) && data.errors[0].msg) ||
+            data.errors
+        );
       }
       const timeout = setTimeout(() => {
-        setErrMsg('')
+        setErrMsg("");
       }, 3000);
-      
+
       return () => {
-        clearTimeout(timeout)
-      }
-      
+        clearTimeout(timeout);
+      };
     }
   }, [isSuccess]);
 
   function signupHandler() {
     if (!email || !name || !confirmPass) return;
-    if (password !== confirmPass) return
+    if (password !== confirmPass) return;
     const obj = {
       name,
       email,
-      password : confirmPass,
+      password: confirmPass,
     };
     mutate(obj);
   }
@@ -82,7 +81,7 @@ export const Signup: FC = (): ReactElement => {
       display="flex"
       flexDirection="column"
       width="70%"
-      maxWidth={'600px'}
+      maxWidth={"600px"}
       mx={"auto"}
       px={4}
       my={6}
@@ -97,12 +96,12 @@ export const Signup: FC = (): ReactElement => {
             You have Signed Up Successfully
           </Alert>
         )}
-         {errMsg && (
-        <Alert severity="error">
-          <AlertTitle>Error Logging In</AlertTitle>
-          {errMsg}
-        </Alert>
-      )}
+        {errMsg && (
+          <Alert severity="error">
+            <AlertTitle>Error Logging In</AlertTitle>
+            {errMsg}
+          </Alert>
+        )}
       </>
       <Typography mb={6} variant="h3">
         Signup
@@ -110,7 +109,7 @@ export const Signup: FC = (): ReactElement => {
 
       <Stack spacing={6}>
         <TextField
-   required
+          required
           id="name"
           label="Name"
           type={"text"}
@@ -124,7 +123,7 @@ export const Signup: FC = (): ReactElement => {
           value={name}
         />
         <TextField
-        required
+          required
           id="email"
           label="Email"
           type={"email"}
@@ -151,7 +150,7 @@ export const Signup: FC = (): ReactElement => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <TextField
-        required
+          required
           id="confirm-password"
           label="Confirm Password"
           type={"password"}
@@ -166,7 +165,15 @@ export const Signup: FC = (): ReactElement => {
 
         {isLoading && <LinearProgress />}
         <Button
-          disabled={!email || !password || !name || !confirmPass || password.length < 7 || email.length < 7 || (confirmPass !== password)}
+          disabled={
+            !email ||
+            !password ||
+            !name ||
+            !confirmPass ||
+            password.length < 7 ||
+            email.length < 7 ||
+            confirmPass !== password
+          }
           onClick={signupHandler}
           variant="contained"
           size="medium"
@@ -174,7 +181,6 @@ export const Signup: FC = (): ReactElement => {
           Signup
         </Button>
         <Typography variant="button">
-        
           <Link to="/login"> Or Login</Link>
         </Typography>
       </Stack>
