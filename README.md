@@ -1,4 +1,4 @@
-Full Stack Tasks Manager to manage your new year resolutions
+# Full Stack Tasks Manager to manage your new year resolutions
 
 ## Built with 🔨
 - Typescript
